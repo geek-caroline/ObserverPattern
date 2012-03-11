@@ -1,5 +1,5 @@
-/*global CustomEventsController:true, TestingExtentions:true*/
-var CustomEventsController, TestingSuite;
+/*global CustomEventsController:true, TestingSuite:true*/
+var customEventsController, testingSuite;
 function customEventTest(customEventsController, testingSuite) {
     var demoButton =     document.getElementById('demo-button'),
         customEvt = customEventsController,
@@ -43,14 +43,14 @@ function customEventTest(customEventsController, testingSuite) {
 //cause the automatic code to run
 window.addEventListener("load", function load(event) {
     window.removeEventListener("load", load, false); //remove listener, no longer needed
-    CustomEventsController = new CustomEventsController();
-    TestingSuite = new TestingSuite();
-    customEventTest(CustomEventsController, TestingSuite);
+    customEventsController = new CustomEventsController();
+    testingSuite = new TestingSuite();
+    customEventTest(customEventsController, testingSuite);
 }, false);
 
 window.addEventListener("unload", function unload(event) {
     //get the customEvt to all get detached
-    CustomEventsController.destroy();
-    CustomEventsController = null;
-    TestingSuite = null;
+    customEventsController.destroy();
+    customEventsController = null;
+    testingSuite = null;
 }, false);
