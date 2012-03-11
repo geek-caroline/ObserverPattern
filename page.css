@@ -1,0 +1,14 @@
+#complete-demo-output {
+    padding: 10px;
+}
+h1 {
+    font-size: 1.3em;
+}
+h2 {
+    font-size: 1.1em;
+}
+ul {
+    padding: 20px;
+    width: 30%;
+    border: 1px dotted #c0c0c0;
+}
