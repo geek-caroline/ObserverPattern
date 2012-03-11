@@ -37,6 +37,8 @@ function CustomEventsController() {
                 delete this._listeners[eventType];
             }
         }
+        //according to mdn this will work, but perhaps needs more testing / investigation
+        //to ensure that it does in IE
         delete this._listeners;
     };
 }

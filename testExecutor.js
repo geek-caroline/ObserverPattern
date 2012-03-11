@@ -14,8 +14,8 @@ function customEventTest(customEventsController, testingSuite) {
             testSuite.addListItemToPage('button clicked and was told:' + data);
         };
 
-    //add our example methods - am using the event 'auto' to differentiate it from
-    //any real event in the DOM.  Just for demontratino purposes, to show it needn't be a 'standard'
+    //add example methods - am using the event 'auto' to differentiate it from
+    //any real event in the DOM.  Just for demontration purposes, to show it needn't be a 'standard'
     //event e.g.click/load/hover event etc
     customEvt.addListener('auto', exampleCallBackFunc1);
     customEvt.addListener('auto', exampleCallBackFunc2);
@@ -42,14 +42,14 @@ function customEventTest(customEventsController, testingSuite) {
 
 //cause the automatic code to run
 window.addEventListener("load", function load(event) {
-    window.removeEventListener("load", load, false); //remove listener, no longer needed
+    window.removeEventListener("load", load, false);
     customEventsController = new CustomEventsController();
     testingSuite = new TestingSuite();
     customEventTest(customEventsController, testingSuite);
 }, false);
 
 window.addEventListener("unload", function unload(event) {
-    //get the customEvt to all get detached
+    //clean up code to prevent memory leaks (possibly need to check this works fully in IE)
     customEventsController.destroy();
     customEventsController = null;
     testingSuite = null;
