@@ -10,10 +10,12 @@ function CustomEventsController() {
     };
     //aka unlisten / unsubscribe / unobserve
     this.removeListener = function (eventType, callBackFunc) {
+        var j, callBacks;
         //find the matching callback and remove it
-        for (var j = 0; j < this._listeners.length; j++) {
-            if (this._listeners[j] === callBackFunc) {
-                this._listeners = this._listeners.splice(j, 1);
+        callBacks = this._listeners[eventType];
+        for (j = 0; j < callBacks.length; j++) {
+            if (callBacks[j] === callBackFunc) {
+                callBacks = callBacks.splice(j, 1);
             }
         }
     };
@@ -25,5 +27,16 @@ function CustomEventsController() {
         for (i = 0; i < callBacks.length; i++) {
             callBacks[i].apply(this, ['this callback was held at position: ' + i]);
         }
+    };
+
+    //clean up this object
+    this.destroy = function () {
+        var eventType, i;
+        for (eventType in this._listeners) {
+            if (this._listeners.hasOwnProperty(eventType)) {
+                delete this._listeners[eventType];
+            }
+        }
+        delete this._listeners;
     };
 }
